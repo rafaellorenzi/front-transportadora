@@ -1,0 +1,97 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        {{createMode ? 'Cadastro ' : 'Edição ' }} de Motorista
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="motoristaForm">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nome:</ion-label>
+          <ion-input formControlName="nome" placeholder="Digite o nome do motorista"></ion-input>
+          <ion-note slot="error" *ngIf="motoristaForm.controls['nome'].hasError('required')">
+            O campo é obrigatório
+          </ion-note>
+          <ion-note slot="error" *ngIf="motoristaForm.controls['nome'].hasError('minlength')">
+            O campo tem {{motoristaForm.controls['nome'].errors?.['minlength'].actualLength}} caracteres, entretanto deve
+            ter no mínimo {{motoristaForm.controls['nome'].errors?.['minlength'].requiredLength}} caracteres
+          </ion-note>
+          <ion-note slot="error" *ngIf="motoristaForm.controls['nome'].hasError('maxlength')">
+            O campo deve ter no máximo {{motoristaForm.controls['nome'].errors?.['maxlength'].requiredLength}} caracteres
+          </ion-note>
+          <ion-note slot="error" *ngIf="motoristaForm.controls['nome'].hasError('invalidName')">
+            O nome do Motorista não pode conter o trecho de caracteres:
+            <strong>{{motoristaForm.controls['nome'].errors?.['invalidName']}}</strong>
+          </ion-note>
+          <pre>{{motoristaForm.controls['nome'].errors | json}}</pre>
+        </ion-item>
+        <ion-item>
+          <ion-label> Data de nascimento </ion-label>
+          <ion-datetime-button datetime="dataNasc"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime formControlName="dataNascimento" id="dataNasc" presentation="date" showDefaultButtons="true"
+                doneText="Selecionar" cancelText="Cancelar" showDefaultTitle="true">
+                <span slot="title">Selecione a data de Nascimento</span>
+              </ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Endereco:</ion-label>
+          <ion-input formControlName="endereco" placeholder="Digite o endereco"></ion-input>
+          <ion-note slot="error" *ngIf="motoristaForm.controls['endereco'].hasError('required')">
+            O campo é obrigatório
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cidade</ion-label>
+          <ion-select [compareWith]="compareWith" formControlName="cidade" placeholder="Informe a cidade do motorista">
+            <ion-select-option *ngFor="let c of cidade" [value]="c">
+              {{c.descricao}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label position="floating">Tipo Habilitacao:</ion-label>
+        <ion-input formControlName="tipoHabilitacao" placeholder="Digite o tipo de Habilitacao"></ion-input>
+        <ion-note slot="error" *ngIf="motoristaForm.controls['tipoHabilitacao'].hasError('required')">
+          O campo é obrigatório
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label> Data de vencimento CNH </ion-label>
+        <ion-datetime-button datetime="dataVenc"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime formControlName="dataVencimento" id="dataVenc" presentation="date" showDefaultButtons="true"
+              doneText="Selecionar" cancelText="Cancelar" showDefaultTitle="true">
+              <span slot="title">Selecione a data de Vencimento</span>
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+    </ion-list>
+      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button (click)="save()" [disabled]="motoristaForm.invalid">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+        <ion-fab-button color="light" (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </form>
+  </ion-content>
+  
+  <ion-footer>
+  
+  </ion-footer>
+  

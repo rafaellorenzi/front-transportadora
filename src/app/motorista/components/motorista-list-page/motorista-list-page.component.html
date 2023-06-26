@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title> Lista de Motoristas </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let motorista of motoristas">
+        <ion-label>
+          {{ motorista.nome }}
+        </ion-label>
+        <ion-icon name="heart" (click)="favorite(motorista)"></ion-icon>
+        <ion-icon
+          name="create"
+          slot="end"
+          [routerLink]="['../edicao', motorista.id]"
+        ></ion-icon>
+        <ion-icon name="trash" slot="end" (click)="remove(motorista)"></ion-icon>
+      </ion-item>
+    </ion-list>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button [routerLink]="['../cadastro']">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+  

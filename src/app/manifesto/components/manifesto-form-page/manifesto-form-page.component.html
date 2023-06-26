@@ -1,0 +1,97 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        {{createMode ? 'Cadastro ' : 'Edição ' }} de Manifesto
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <form [formGroup]="manifestoForm">
+      <ion-list>
+        <ion-item>
+            <ion-label>Tipo do Manifesto</ion-label>
+            <ion-select [compareWith]="compareWith" formControlName="tipoManifesto" placeholder="Informe o tipo de manifesto">
+              <ion-select-option *ngFor="let t of tipoManifesto" [value]="t">
+                {{t.descricao}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        <ion-item>
+            <ion-label>Cidade Origem</ion-label>
+            <ion-select [compareWith]="compareWith" formControlName="cidadeOrigem" placeholder="Informe a cidade de origem">
+              <ion-select-option *ngFor="let co of cidadeOrigem" [value]="co">
+                {{co.descricao}}
+              </ion-select-option>
+            </ion-select>
+        </ion-item> 
+        <ion-item>
+            <ion-label>Cidade Destino</ion-label>
+            <ion-select [compareWith]="compareWith" formControlName="cidadeDestino" placeholder="Informe a cidade de destino">
+              <ion-select-option *ngFor="let cd of cidadeDestino" [value]="cd">
+                {{cd.descricao}}
+              </ion-select-option>
+            </ion-select>
+        </ion-item>   
+        <ion-item>
+          <ion-label> Data de Saida </ion-label>
+          <ion-datetime-button datetime="dataSai"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime formControlName="dataSaida" id="dataSai" presentation="date" showDefaultButtons="true"
+                doneText="Selecionar" cancelText="Cancelar" showDefaultTitle="true">
+                <span slot="title">Selecione a data de Saida</span>
+              </ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        <ion-item>
+            <ion-label> Data de Chegada </ion-label>
+            <ion-datetime-button datetime="dataCheg"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime formControlName="dataChegada" id="dataCheg" presentation="date" showDefaultButtons="true"
+                  doneText="Selecionar" cancelText="Cancelar" showDefaultTitle="true">
+                  <span slot="title">Selecione a data de Chegada</span>
+                </ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        <ion-item>
+          <ion-label>Motorista</ion-label>
+          <ion-select [compareWith]="compareWith" formControlName="motorista" placeholder="Informe o motorista">
+            <ion-select-option *ngFor="let m of motorista" [value]="m">
+              {{m.nome}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-label position="floating">Valor Frete:</ion-label>
+        <ion-input formControlName="valorFrete" placeholder="Digite o Valor do frete"></ion-input>
+        <ion-note slot="error" *ngIf="manifestoForm.controls['valorFrete'].hasError('required')">
+          O campo é obrigatório
+        </ion-note>
+      <ion-label position="floating">Valor Pedagio:</ion-label>
+        <ion-input formControlName="valorPedagio" placeholder="Digite o Valor do pedagio"></ion-input>
+        <ion-note slot="error" *ngIf="manifestoForm.controls['valorPedagio'].hasError('required')">
+          O campo é obrigatório
+        </ion-note>
+      </ion-list>
+      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button (click)="save()" [disabled]="manifestoForm.invalid">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+        <ion-fab-button color="light" (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </form>
+  </ion-content>
+  
+  <ion-footer>
+  
+  </ion-footer>
+  

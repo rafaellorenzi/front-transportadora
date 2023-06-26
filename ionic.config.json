@@ -1,0 +1,7 @@
+{
+  "name": "front-transportadora",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

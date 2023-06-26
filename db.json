@@ -1,0 +1,65 @@
+{
+  "cidades": [
+    {
+      "id": 1,
+      "descricao": "Criciúma"
+    },
+    {
+      "id": 2,
+      "descricao": "Içara"
+    },
+    {
+      "id": 3,
+      "descricao": "Morro da Fumaça"
+    }
+  ],
+  "motoristas": [
+    {
+      "nome": "Junior",
+      "dataNascimento": "1998-11-20",
+      "endereco": "Rua Goias",
+      "tipoHabilitacao": "AE",
+      "dataVencimento": "2032-10-10",
+      "cidade": {
+        "id": 1,
+        "descricao": "Criciúma"
+      },
+      "id": 2
+    }
+  ],
+  "tipoManifesto": [
+    {
+      "id": 1,
+      "descricao": "Viagem"
+    },
+    {
+      "id": 2,
+      "descricao": "Coleta e Entrega"
+    }
+  ],
+  "manifestos": [
+    {
+      "tipoManifesto": {
+        "id": 1,
+        "descricao": " Viagem"
+      },
+      "cidadeOrigem": {
+        "id": 1,
+        "descricao": " Criciúma"
+      },
+      "cidadeDestino": {
+        "id": 2,
+        "descricao": " Içara"
+      },
+      "dataSaida": "2023-06-25",
+      "dataChegada": "2023-06-26",
+      "motorista": {
+        "id": 2,
+        "nome": " Julio"
+      },
+      "valorFrete": "1000",
+      "valorPedagio": "20",
+      "id": 1
+    }
+  ]
+}

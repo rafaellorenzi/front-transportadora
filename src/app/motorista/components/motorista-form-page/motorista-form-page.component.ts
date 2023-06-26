@@ -118,7 +118,7 @@ export class MotoristaFormPageComponent implements OnInit, OnDestroy,
       this.subscription.add(
         this.motoristaService.save(this.motoristaForm.value).subscribe(
           () => {
-            this.router.navigate(['./motoristas'])
+            this.router.navigate(['./motorista'])
           },
           async () => {
             const alerta = await this.alertController.create({
@@ -136,7 +136,7 @@ export class MotoristaFormPageComponent implements OnInit, OnDestroy,
         id: this.id
       }).subscribe({
         next: () => {
-          this.router.navigate(['./motoristas'])
+          this.router.navigate(['./motorista'])
         },
         error: async () => {
           const alerta = await this.alertController.create({
@@ -151,7 +151,7 @@ export class MotoristaFormPageComponent implements OnInit, OnDestroy,
   }
 
   cancel(): void {
-    this.router.navigate(['./motoristas'])
+    this.router.navigate(['./motorista'])
   }
 
   compareWith(o1: CidadeInterface, o2: CidadeInterface) {

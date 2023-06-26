@@ -10,33 +10,33 @@ export class ManifestoService {
 
   getManifesto(id: number): Observable<ManifestoInterface> {
     return this.httpClient.get<ManifestoInterface>(
-      `${environment.apiUrl}/manifestos/${id}`
+      `${environment.apiUrl}/manifesto/${id}`
     )
   }
 
   getManifestos(): Observable<ManifestoInterface[]> {
     return this.httpClient.get<ManifestoInterface[]>(
-      `${environment.apiUrl}/manifestos`
+      `${environment.apiUrl}/manifesto`
     );
   }
 
   update(manifesto: ManifestoInterface): Observable<ManifestoInterface> {
     return this.httpClient.put<ManifestoInterface>(
-      `${environment.apiUrl}/manifestos/${manifesto.id}`,
+      `${environment.apiUrl}/manifesto/${manifesto.id}`,
       manifesto
     )
   }
 
   save(manifesto: ManifestoInterface): Observable<ManifestoInterface> {
     return this.httpClient.post<ManifestoInterface>(
-      `${environment.apiUrl}/manifestos`,
+      `${environment.apiUrl}/manifesto`,
       manifesto
     );
   }
 
   remove(manifesto: ManifestoInterface): Observable<void> {
     return this.httpClient.delete<void>(
-      `${environment.apiUrl}/manifestos/${manifesto.id}`
+      `${environment.apiUrl}/manifesto/${manifesto.id}`
     );
   }
 }

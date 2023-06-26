@@ -10,33 +10,33 @@ export class MotoristaService {
 
   getMotorista(id: number): Observable<MotoristaInterface> {
     return this.httpClient.get<MotoristaInterface>(
-      `${environment.apiUrl}/motoristas/${id}`
+      `${environment.apiUrl}/motorista/${id}`
     )
   }
 
   getMotoristas(): Observable<MotoristaInterface[]> {
     return this.httpClient.get<MotoristaInterface[]>(
-      `${environment.apiUrl}/motoristas`
+      `${environment.apiUrl}/motorista`
     );
   }
 
   update(motorista: MotoristaInterface): Observable<MotoristaInterface> {
     return this.httpClient.put<MotoristaInterface>(
-      `${environment.apiUrl}/motoristas/${motorista.id}`,
+      `${environment.apiUrl}/motorista/${motorista.id}`,
       motorista
     )
   }
 
   save(motorista: MotoristaInterface): Observable<MotoristaInterface> {
     return this.httpClient.post<MotoristaInterface>(
-      `${environment.apiUrl}/motoristas`,
+      `${environment.apiUrl}/motorista`,
       motorista
     );
   }
 
   remove(motorista: MotoristaInterface): Observable<void> {
     return this.httpClient.delete<void>(
-      `${environment.apiUrl}/motoristas/${motorista.id}`
+      `${environment.apiUrl}/motorista/${motorista.id}`
     );
   }
 }

@@ -11,7 +11,7 @@ export class CidadeService {
 
   getCidade(): Observable<CidadeInterface[]> {
     return this.httpClient.get<CidadeInterface[]>(
-      `${environment.apiUrl}/cidades`
+      `${environment.apiUrl}/cidade`
     )
   }
 
